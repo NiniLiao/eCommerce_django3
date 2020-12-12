@@ -5,6 +5,7 @@
         <div class="col-lg-6">
             <div class="box-element" id="form-wrapper">
                 <form id="form">
+					{% csrf_token %}
                     <div id="user-info">
                         <div class="form-field">
 							<input required class="form-control" type="text" name="name" placeholder="Name..">
@@ -73,29 +74,32 @@
 		var shipping = '{{order.shipping}}'
 		var total = '{{order.get_cart_total}}'
 
-		if (shipping == 'False'){
+	    {% comment %} if (shipping == 'False'){
 		 	document.getElementById('shipping-info').innerHTML = ''
-		}
+		}  {% endcomment %}
 
-		if (user != 'AnonymousUser'){
+		{% comment %} if (user != 'AnonymousUser'){
 		 	document.getElementById('user-info').innerHTML = ''
-		 }
+		 } {% endcomment %}
 
-		if (shipping == 'False' && user != 'AnonymousUser'){
+		{% comment %} if (shipping == 'False' && user != 'AnonymousUser'){
 			//Hide entire form if user is logged in and shipping is false
-            document.getElementById('form-wrapper').classList.add("hidden");
+            	document.getElementById('form-wrapper').classList.add("hidden");
             //Show payment if logged in user wants to buy an item that does not require shipping
             document.getElementById('payment-info').classList.remove("hidden");
-		}
+		}  {% endcomment %}
 
 		var form = document.getElementById('form')
+
+		csrftoken = form.getElementsByTagName("input")[0].value
+		console.log('Newtoken:', form.getElementsByTagName("input")[0].value)
 		
 		form.addEventListener('submit', function(e){
-	    	e.preventDefault()
-	    	console.log('Form Submitted...')
-	    	document.getElementById('form-button').classList.add("hidden");
-	    	document.getElementById('payment-info').classList.remove("hidden");
-	    	})
+		e.preventDefault()
+		console.log('Form Submitted...')
+		document.getElementById('form-button').classList.add("hidden");
+		document.getElementById('payment-info').classList.remove("hidden");
+		})
 
 		
 	    document.getElementById('make-payment').addEventListener('click', function(e){
