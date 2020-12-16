@@ -84,7 +84,7 @@
 
 		{% comment %} if (shipping == 'False' && user != 'AnonymousUser'){
 			//Hide entire form if user is logged in and shipping is false
-            	document.getElementById('form-wrapper').classList.add("hidden");
+            	document.getElementById('user-info').classList.add("hidden");
             //Show payment if logged in user wants to buy an item that does not require shipping
             document.getElementById('payment-info').classList.remove("hidden");
 		}  {% endcomment %}
@@ -122,7 +122,7 @@
 				'zipcode':null,
 			}
 
-			if (shipping != 'False'){
+			if (shipping != 'True'){
 	    		shippingInfo.address = form.address.value
 		    	shippingInfo.city = form.city.value
 		    	shippingInfo.state = form.state.value
