@@ -4,6 +4,8 @@ from .models import *
 import json
 import datetime
 from .utils import cookieCart, cartData, guestOrder
+from .lineapi import *
+
 
 # Create your views here.
 
@@ -74,7 +76,9 @@ def processOrder(request):
     else:
         customer, order = guestOrder(request, data)
 
-    total = float(data['form']['total'])
+    # total = float(data['form']['total'])
+    total = 100
+    
     order.transaction_id = transaction_id
 
     if total == float(order.get_cart_total):
@@ -91,4 +95,32 @@ def processOrder(request):
         zipcode=data['shipping']['zipcode'],
     )    
 
-    return JsonResponse('Payment complete!', safe=False)
+
+    payProvider = LinePayApi('1655386484', 'e0fd66b6163bde8335040cfc28062399', True)
+    options = {
+        'amount': total,
+        'currency': 'TWD',
+        'orderId': transaction_id,
+        'packages': [
+            { 
+                'id': 1,
+                'amount': total,
+                'name': 'fake package',
+                'products': [
+                    {
+                        'name': 'fake product',
+                        'quantity': '1',
+                        'price': total,
+                    }
+                ]
+            }
+        ],
+        'redirectUrls': {
+            'confirmUrl': 'http://127.0.0.1:8000/',
+            'cancelUrl': 'http://127.0.0.1:8000/',
+        }
+    }
+    result = payProvider.request(options)
+    weburl = result.get('info').get('paymentUrl').get('web')
+    
+    return JsonResponse({'message': 'Payment complete! ', 'payLink': weburl}, safe=False)
