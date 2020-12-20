@@ -6,6 +6,7 @@ import datetime
 from .utils import cookieCart, cartData, guestOrder
 from .lineapi import *
 
+from pprint import pprint
 
 # Create your views here.
 
@@ -77,9 +78,10 @@ def processOrder(request):
         customer, order = guestOrder(request, data)
 
     # total = float(data['form']['total'])
-    total = 100
-    
+    total = int(float(data['form']['total']))
     order.transaction_id = transaction_id
+
+    pprint(total)
 
     if total == float(order.get_cart_total):
         order.complete = True
