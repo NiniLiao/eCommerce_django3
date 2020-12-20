@@ -78,7 +78,7 @@ def processOrder(request):
         customer, order = guestOrder(request, data)
 
     # total = float(data['form']['total'])
-    total = int(float(data['form']['total']))
+    total = int(float(data['form']['total'])) # Linepay金額只能收整數
     order.transaction_id = transaction_id
 
     pprint(total)
