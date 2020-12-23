@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
 <html>
 <head>
     <title>Ecommerce</title>
@@ -74,8 +75,30 @@
             <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
         </ul>
       
-        <div class="form-inline my-2 my-lg-0">
-	     	<a href="#"class="btn btn-warning">Login</a>
+            {% comment %} <div class="form-inline my-2 my-lg-0">
+	     	    <a href="{% url 'store' %}" class="btn btn-warning">Login</a> {% endcomment %}
+
+                
+                <form action="" method="POST">
+
+                    {% csrf_token %}
+                    {{ form }}
+                    <a href="{% url 'store' %}" class="btn btn-primary">Login</a>
+                    <a class="btn btn-warning" href="{% provider_login_url 'google' method='oauth2' %}">Google Login</a>
+
+                    {% comment %} <p>Do you have an account? <a class="btn btn-warning" href="{% url 'store' %}">Sign Up</a></p> {% endcomment %}
+                    
+                    {% if user.is_authenticated %}
+                    <span style="font-weight:bold;">Hello, {{ user.username }}!</span>
+                    <a class="btn btn-success" href="{% url 'account_logout' %}">Logout</a><br>
+                    {% else %}
+                    <p>You are not logged in</p>
+                    {% endif %}
+                </form>
+
+                
+                
+                
 	     	
 	     	<a href="{% url 'cart' %}">
 	    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
