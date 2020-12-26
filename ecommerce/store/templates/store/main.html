@@ -83,7 +83,7 @@
 
                     {% csrf_token %}
                     {{ form }}
-                    <a href="{% url 'store' %}" class="btn btn-primary">Login</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
                     <a class="btn btn-warning" href="{% provider_login_url 'google' method='oauth2' %}">Google Login</a>
 
                     {% comment %} <p>Do you have an account? <a class="btn btn-warning" href="{% url 'store' %}">Sign Up</a></p> {% endcomment %}
