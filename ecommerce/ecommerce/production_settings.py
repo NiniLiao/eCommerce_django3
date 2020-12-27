@@ -13,7 +13,7 @@ STATIC_ROOT = 'static'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers.
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://ecommerce-django3.herokuapp.com/']
 
 # Turn off DEBUG mode.
 DEBUG = False
