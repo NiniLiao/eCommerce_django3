@@ -8,6 +8,7 @@ DATABASES = {
 
 # Static asset configuration.
 STATIC_ROOT = 'store/static'
+MEDIA_ROOT = 'store/static/images'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
