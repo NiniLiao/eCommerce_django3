@@ -16,4 +16,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['ecommerce-nnl.herokuapp.com']
 
 # Turn off DEBUG mode.
-DEBUG = True
+DEBUG = False
