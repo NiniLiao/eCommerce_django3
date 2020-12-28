@@ -7,7 +7,7 @@ DATABASES = {
 }
 
 # Static asset configuration.
-STATIC_ROOT = 'static_root_for_production/'
+STATIC_ROOT = 'staticfiles'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
