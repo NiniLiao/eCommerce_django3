@@ -7,7 +7,7 @@ DATABASES = {
 }
 
 # Static asset configuration.
-STATIC_ROOT = 'staticfiles'
+# STATIC_ROOT = 'staticfiles'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -16,4 +16,4 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['ecommerce-nnl.herokuapp.com']
 
 # Turn off DEBUG mode.
-DEBUG = False
+DEBUG = True
