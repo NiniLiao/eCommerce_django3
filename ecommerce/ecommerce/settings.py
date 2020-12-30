@@ -154,11 +154,25 @@ AUTHENTICATION_BACKENDS = (
  'allauth.account.auth_backends.AuthenticationBackend',
  )
 
+# ACCOUNT_AUTHENTICATION_METHOD = "email" # Defaults to username_email
+# ACCOUNT_USERNAME_REQUIRED = False       # Defaults to True
+# ACCOUNT_EMAIL_REQUIRED = True           # Defaults to False
+# SOCIALACCOUNT_QUERY_EMAIL = ACCOUNT_EMAIL_REQUIRED
+# SOCIALACCOUNT_AUTO_SIGNUP = True
+# SOCIALACCOUNT_EMAIL_REQUIRED = False
+# # ACCOUNT_ADAPTER = "store.adapter_ori.MyLoginAccountAdapter"
+# SOCIALACCOUNT_ADAPTER = 'store.adapter_ori.MySocialAccountAdapter'
+# LOGIN_URL = "/"
+# LOGIN_REDIRECT_URL = "/users/{id}/mytags"
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'your_account@gmail.com'
-EMAIL_HOST_PASSWORD = 'your_password'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
