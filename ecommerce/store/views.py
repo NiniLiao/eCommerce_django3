@@ -8,7 +8,6 @@ from .lineapi import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-
 from pprint import pprint
 
 
@@ -26,8 +25,6 @@ def registerPage(request):
                 user = form.cleaned_data.get('username')
 
                 user_id = User.objects.get(username=user).pk
-                Customer.objects.filter(name = 'Penny').update(user = user_id)
-                
                 messages.success(request, 'Account was created for ' + user)
 
                 return redirect('login')
@@ -41,7 +38,7 @@ def loginPage(request):
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
-            password =request.POST.get('password')
+            password = request.POST.get('password')
 
             user = authenticate(request, username=username, password=password)
 
@@ -59,7 +56,14 @@ def logoutUser(request):
     return redirect('login')
 
 def store(request):
-
+    if request.user.is_authenticated:        
+        user=User.objects.get(username=request.user)        
+        customer, created = Customer.objects.get_or_create(
+            user=user,
+            name=user.username,
+            phone='012345678',
+            email='test@test.com'
+        )
     data = cartData(request)
     cartItems = data['cartItems']
 
