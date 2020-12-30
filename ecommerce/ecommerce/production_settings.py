@@ -17,3 +17,6 @@ ALLOWED_HOSTS = ['ecommerce-nnl.herokuapp.com']
 
 # Turn off DEBUG mode.
 DEBUG = True
+
+# 上線後要改為2
+SITE_ID = 2

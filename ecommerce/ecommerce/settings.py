@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-SITE_ID = 2 # 上線後要改為2
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'  # 登入後的首頁網址
 
