@@ -23,8 +23,8 @@ def registerPage(request):
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
-
                 user_id = User.objects.get(username=user).pk
+                Customer.objects.filter(user = user_id).update(name=user)
                 messages.success(request, 'Account was created for ' + user)
 
                 return redirect('login')
